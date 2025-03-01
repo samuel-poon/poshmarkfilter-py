@@ -39,7 +39,7 @@ def scan_listing(
         if 'OPENAI_API_KEY' in os.environ:
             openai_client = OpenAI(api_key=os.environ['OPENAI_API_KEY'])
         else:
-            raise ValueError('An OpenAI client object must be provided as an argument or an OPENAI_API_KEY environment variable must be set.')
+            raise ValueError('An openai_client object must be provided as an argument or an OPENAI_API_KEY environment variable must be set.')
     
     cover_shot_url = listing.cover_shot['url']
     pictures_urls = list(map(lambda x: x['url'], listing.pictures))
