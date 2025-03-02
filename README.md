@@ -12,12 +12,15 @@ pip3 install git+https://github.com/samuel-poon/poshmarkfilter-py
 ```
 
 ## Quick start
-Include `OPENAI_API_KEY` and `DEFAULT_MODEL` in your environment variables. See `.env.example` for reference.
+Include `OPENAI_API_KEY` in your environment variables. See `.env.example` for reference.
+
+It is highly recommended that you store your API keys in a `.env` file and load them through [python-dotenv](https://pypi.org/project/python-dotenv/).
 
 ```python
 from typing import Literal
 import json
 
+from dotenv import load_dotenv
 from poshmarkfilter import get_poshmark_listings, scan_listing, Filter
 
 filters = [
