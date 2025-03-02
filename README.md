@@ -49,5 +49,3 @@ for listing in listings:
 
 print(json.dumps(results, indent=4)) # Pretty print results
 ```
-
-

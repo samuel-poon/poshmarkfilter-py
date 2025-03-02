@@ -5,6 +5,7 @@ from openai import OpenAI
 from openai.types.chat.parsed_chat_completion import ParsedChatCompletion
 from pydantic import create_model
 
+from .config import DEFAULT_MODEL
 from .listing import Listing
 from .filter import Filter
 
@@ -14,7 +15,7 @@ def scan_listing(
         include_cover_shot: bool        = True,
         include_all_pictures: bool      = False,
         openai_client: OpenAI | None    = None,
-        model: str                      = None,
+        model: str                      = DEFAULT_MODEL,
         detail: str                     = 'low',
         max_tokens: int | None          = None,
     ) -> ParsedChatCompletion:
@@ -51,13 +52,7 @@ def scan_listing(
 
     if include_all_pictures:
         image_urls.extend(pictures_urls)
-
-    if model is None:
-        if 'DEFAULT_MODEL' in os.environ:
-            model = os.environ['DEFAULT_MODEL']
-        else:
-            raise ValueError('A model argument must be provided or a DEFAULT_MODEL environment variable must be set.')
-    
+        
     prompt = f'Here are some details regarding a listing on Poshmark.\n\nTITLE: {listing.title}.\n\nDESCRIPTION: {listing.description}\n\nGiven the following criteria, return a JSON object in the following format.\n'
     
     prompt += '{'
