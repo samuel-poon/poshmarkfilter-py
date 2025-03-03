@@ -1,6 +1,6 @@
 # poshmarkfilter
 
-A Python library for creating custom filters on Poshmark. Extract (virtually) any information you want from a Poshmark listing.
+A Python library for creating custom filters on Poshmark. Use AI to extract (virtually) any information you want from a Poshmark listing.
 
 ## Requirements
 * Python 3.11+
@@ -81,7 +81,8 @@ Recommendations:
 <img width="1085" alt="image" src="https://github.com/user-attachments/assets/c0d90a8e-75ed-4092-b848-fa8ad07c77ec" />
 
 ### scan_listing
-`scan_listing` takes a `Listing` and filters them based on `filters`. Returns a [`ParsedChatCompletion`](https://github.com/openai/openai-python/blob/main/helpers.md) object whose message content is `{"filter_name_1":"filter_1_result", "filter_name_2":"filter_2_result",...}`
+`scan_listing` takes a `Listing` and filters them based on `filters`. Returns a [`ParsedChatCompletion`](https://github.com/openai/openai-python/blob/main/helpers.md) object whose message content is `{"filter_name_1":"filter_1_result", "filter_name_2":"filter_2_result",...}`.
+
 ```python
 chat_completion = scan_listing(
     listing=listing,            # Mandatory (poshmarkfilter.Listing), the Listing object to scan
@@ -98,3 +99,8 @@ chat_completion = scan_listing(
 Recommendations:
 * At a minimum, all listings scanned through `scan_listing` will include the title and description of the listing. By default, this function will also provide the cover shot to the model, but if this is unnecessary, I recommmend setting `include_cover_shot` to `False`.
 * Unless you absolutely need to include all pictures in the prompt (e.g. for specific measurements), I recommend keeping `include_all_pictures` to `False`. Setting this to `True` can be expensive.
+
+## Estimating costs
+Based on my personal usage, scanning a listing using `gpt-4o-mini` with `include_cover_shot=True` and `include_all_pictures=False` at `detail=low` (the default options) consumes roughly 3k input tokens. Assuming that each completion takes 20 output tokens, this means each call costs ~$0.0005 or $0.46/1000 calls.
+
+If the filter can be processed using the title and description of the listing alone, you can drastically reduce the cost by exluding all photos from the scan.
