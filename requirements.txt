@@ -1,6 +1,7 @@
 annotated-types==0.7.0
 anyio==4.8.0
 beautifulsoup4==4.13.3
+build==1.2.2.post1
 certifi==2025.1.31
 charset-normalizer==3.4.1
 distro==1.9.0
@@ -10,8 +11,10 @@ httpx==0.28.1
 idna==3.10
 jiter==0.8.2
 openai==1.64.0
+packaging==24.2
 pydantic==2.10.6
 pydantic_core==2.27.2
+pyproject_hooks==1.2.0
 python-dotenv==1.0.1
 requests==2.32.3
 setuptools==75.8.1
