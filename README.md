@@ -103,4 +103,4 @@ Recommendations:
 ## Estimating costs
 Based on my personal usage, scanning a listing using `gpt-4o-mini` with `include_cover_shot=True` and `include_all_pictures=False` at `detail=low` (the default options) consumes roughly 3k input tokens. Assuming that each completion takes 20 output tokens, this means each call costs ~$0.0005 or $0.46/1000 calls.
 
-If the filter can be processed using the title and description of the listing alone, you can drastically reduce the cost by exluding all photos from the scan.
+If the filter can be processed using the title and description of the listing alone, you can drastically reduce the cost by excluding all photos from the scan.
