@@ -49,14 +49,17 @@ def get_poshmark_listings_data(url:str) -> list[dict]:
     '''
     initial_state = _get_poshmark_intial_state(url)
 
-    # If the feed is by category (i.e. starts with https://poshmark.ca/category/...)
-    if '$_category' in initial_state:
-        return initial_state['$_category']['gridData']['data']
-    # If the feed is by brand (i.e. starts with https://poshmark.ca/brand/...)
-    elif '$_brand' in initial_state:
-        return initial_state['$_brand']['gridData']['data']
-    else:
-        raise ValueError(f'Could not find listings data for {url}.')
+    valid_keys = [
+        '$_category', # If the feed is by category (i.e. starts with https://poshmark.ca/category/...)
+        '$_brand', # If the feed is by brand (i.e. starts with https://poshmark.ca/brand/...)
+        '$_search' # If the feed is by search (i.e. starts with https://poshmark.ca/search/...)
+    ]
+    
+    for valid_key in valid_keys:
+        if valid_key in initial_state:
+            return initial_state[valid_key]['gridData']['data']
+    
+    raise ValueError(f'Could not find listings data for {url}.')
 
 def get_poshmark_listings(
         url:str,
