@@ -176,4 +176,7 @@ cython_debug/
 
 # Personal preferences
 .DS_Store
+
 sandbox.py
+
+local/
